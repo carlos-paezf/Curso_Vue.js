@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hola mundo con Vue.js</title>
+</head>
+
+<body>
+    <!-- Encapsular lo que queremos manejar con Vue.js en un container -->
+    <div id="app">
+        <h1>{{ titulo }}</h1>
+        <ul>
+            <li v-for="posicion of posiciones">
+                {{ posicion }}
+            </li>
+        </ul>
+        <br>
+        <ul>
+            <li v-for="objeto of objetos">
+                {{ objeto.nombre }} - {{ objeto.estado }}
+                <span v-if="!objeto.estado">-> Estado arbitrariamente falso</span>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Ubicar el enlace de instalación por encima de mis scripts -->
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+    <script src="js1.js"></script>
+</body>
+
+</html>
