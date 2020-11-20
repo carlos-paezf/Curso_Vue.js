@@ -11,19 +11,39 @@
 <body>
     <!-- Encapsular lo que queremos manejar con Vue.js en un container -->
     <div id="app">
+
         <h1>{{ titulo }}</h1>
+
         <ul>
             <li v-for="posicion of posiciones">
                 {{ posicion }}
             </li>
-        </ul>
-        <br>
+        </ul><br>
+
         <ul>
             <li v-for="objeto of objetos">
-                {{ objeto.nombre }} - {{ objeto.estado }}
+                {{ objeto.nombre }} - {{ objeto.estado }} - {{ objeto.entero }}
                 <span v-if="!objeto.estado">-> Estado arbitrariamente falso</span>
             </li>
         </ul>
+
+        <!-- Methods, Computed, v-model, eventos, keyup  -->
+        <button v-on:click="metodo1">Click 1</button>
+        <button @click="metodo2">Click 2</button><br>
+
+        <input type="text" v-model="nuevoDato" @keyup.enter="agregarDato">
+        <button @click="agregarDato">Agregar Dato</button>
+        <ul>
+            <li v-for="objeto of objetos">
+                {{ objeto.nombre }} - {{ objeto.estado }}
+                <input type="number" v-model.number="objeto.entero">
+                <span v-if="objeto.entero === 0"> -> Vacio</span>
+                <button @click="objeto.entero++">+</button>
+                <button @click="objeto.entero--">-</button>
+            </li>
+        </ul>
+
+        <h4>TOTAL: {{ sumarEnteros }}</h4>
     </div>
 
     <!-- Ubicar el enlace de instalación por encima de mis scripts -->
