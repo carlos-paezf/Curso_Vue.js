@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Hacer uso de estilos CSS con Bootstrap-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <title>Clases en Vue.js</title>
+</head>
+
+<body>
+    <div id="app" class="container mt-5">
+
+        <!-- Usar clases estaticas con Vue.js -->
+        <div class="bg-dark" :class="['p-3', 'text-white']">
+            <h3>Clase Estatica</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa facere libero perferendis minima commodi! Odit est hic eaque! Laudantium mollitia repellendus sapiente voluptas reiciendis magni consectetur earum ut commodi minus.</p>
+        </div>
+
+        <!-- Usar clases no estaticas con Vue.js -->
+        <div :class="['p-3', 'text-white', fondo]">
+            <h3>Personalizar Color</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A tenetur recusandae aliquid at tempore fugit consequatur ducimus amet repellendus magni, perspiciatis eligendi voluptas obcaecati impedit suscipit distinctio in expedita atque?</p>
+            <!-- Ejemplo de la vinculación dinamica, ingresar el color de la clase -->
+            <input type="text" class="form-control my-3" v-model="fondo">
+        </div>
+
+        <!-- Ejemplo de vinculacion en base a un condicional dentro de :class -->
+        <div class="text-black p-3" :class="{'bg-info' : color , 'bg-success' : !color}">
+            <h3>Cambio de Color por Condicional</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem, nulla est accusantium aliquam tenetur ut earum vitae, dolorem ipsum eos aut harum recusandae sed, beatae molestias dolor illo doloremque quas!</p>
+            <!-- Cambio de color al dar Click -->
+            <button class="btn btn-primary" @click="color = !color">Cambiar Color</button>
+        </div>
+
+    </div>
+
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="js1.js"></script>
+</body>
+
+</html>
