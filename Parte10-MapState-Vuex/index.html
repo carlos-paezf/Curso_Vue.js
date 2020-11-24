@@ -51,23 +51,29 @@
             <div class="bg-danger p-2">
                 <h3 class="mx-3 my-3">Contador reducir -2:
                     <button class="btn btn-dark btn-sm" @click="reducir(2)">
-                        <span class="material-icons my-1">clear</span>
+                        <span class="material-icons my-1 text-white">clear</span>
                     </button>
                 </h3>
                 <h2 class="mx-5 my-3">Componente hijo - Número constante: {{ $store.state.numero }}</h2>
+                <button class="btn btn-info my-3" @click="obtenerCursos">Obtener Cursos</button>
+                <ul class="list-group" v-for="item of cursos">
+                    <li class="list-group-item list-group-item-info">{{ item.id }} - {{ item.nombre }}</li>
+                </ul>
             </div>
             `,
             computed: {
-                ...Vuex.mapState(['numero'])
+                ...Vuex.mapState(['numero', 'cursos'])
             },
             methods: {
-                ...Vuex.mapMutations(['aumentar', 'reducir'])
+                ...Vuex.mapMutations(['aumentar', 'reducir']),
+                ...Vuex.mapActions(['obtenerCursos'])
             }
         });
 
         const store = new Vuex.Store({
             state: {
-                numero: 10
+                numero: 10,
+                cursos: []
             },
             mutations: {
                 aumentar(state) {
@@ -75,6 +81,18 @@
                 },
                 reducir(state, n) {
                     state.numero -= n
+                },
+                llenarCursos(state, cursosAccion) {
+                    state.cursos = cursosAccion
+                }
+            },
+            actions: {
+                obtenerCursos: async function({
+                    commit
+                }) {
+                    const data = await fetch('datos.json');
+                    const cursos = await data.json();
+                    commit('llenarCursos', cursos)
                 }
             }
         });
