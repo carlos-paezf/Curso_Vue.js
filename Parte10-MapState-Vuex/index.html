@@ -31,7 +31,7 @@
             <div class="bg-dark text-white p-4 my-3">
                 <h1>Componente Padre - Número constante: {{ numero }}</h1>
                 <h3 class="mx-4 my-3">Contador aumentar:
-                    <button class="btn btn-danger btn-sm" @click="$store.commit('aumentar')">
+                    <button class="btn btn-danger btn-sm" @click="aumentar">
                         <span class="material-icons my-1">add</span>
                     </button>
                 </h3>
@@ -40,14 +40,17 @@
             `,
             computed: {
                 ...Vuex.mapState(['numero'])
+            },
+            methods: {
+                ...Vuex.mapMutations(['aumentar', 'reducir'])
             }
         });
 
         Vue.component('hijo', {
             template: /*html*/ `
             <div class="bg-danger p-2">
-                <h3 class="mx-3 my-3">Contador reducir:
-                    <button class="btn btn-dark btn-sm" @click="$store.commit('reducir')">
+                <h3 class="mx-3 my-3">Contador reducir -2:
+                    <button class="btn btn-dark btn-sm" @click="reducir(2)">
                         <span class="material-icons my-1">clear</span>
                     </button>
                 </h3>
@@ -56,6 +59,9 @@
             `,
             computed: {
                 ...Vuex.mapState(['numero'])
+            },
+            methods: {
+                ...Vuex.mapMutations(['aumentar', 'reducir'])
             }
         });
 
@@ -67,8 +73,8 @@
                 aumentar(state) {
                     state.numero++
                 },
-                reducir(state) {
-                    state.numero--
+                reducir(state, n) {
+                    state.numero -= n
                 }
             }
         });
