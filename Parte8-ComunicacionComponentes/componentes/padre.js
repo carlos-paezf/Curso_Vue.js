@@ -10,12 +10,14 @@ Vue.component('padre', {
                 <span class="material-icons my-1">clear</span>
             </button>
         </h4>
-        <hijo :numero="numeroPadre"></hijo>
+        <hijo :numero="numeroPadre" @datoHijo="datoPadre = $event"></hijo>
+        <h4 class="mx-3 my-1">Dato pasado por "Hijo": {{ datoPadre }}</h4>
     </div>
     `,
     data() {
         return {
-            numeroPadre: 10
+            numeroPadre: 10,
+            datoPadre: ''
         }
     }
 })
