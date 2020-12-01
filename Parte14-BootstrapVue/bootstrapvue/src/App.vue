@@ -17,6 +17,7 @@
         <b-nav-item :to="{name: 'Grid'}">Grid</b-nav-item>
         <b-nav-item :to="{name: 'Cards'}">Cards</b-nav-item>
         <b-nav-item :to="{name: 'Form'}">Form</b-nav-item>
+        <b-nav-item :to="{name: 'Form2'}">Form 2</b-nav-item>
       </b-navbar-nav>
 
       <!-- Right aligned nav items -->
