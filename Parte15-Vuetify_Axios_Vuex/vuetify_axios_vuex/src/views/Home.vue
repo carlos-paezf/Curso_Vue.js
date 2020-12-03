@@ -8,9 +8,9 @@
       </v-flex>
     </v-layout>
 
-    <!-- En esta fila ubico la tarjeta de prueba con Vuetify -->
-    <v-layout>
-      <v-flex xs12>
+    <v-layout :wrap="true">
+      <!-- En esta columna ubico la tarjeta de prueba con Vuetify -->
+      <v-flex xs6>
         <!-- Caracteristicas Generales de la tarjeta -->
         <v-card elevation = "24" :loading="loading" class="mx-auto my-5" max-width="500">
           <template slot="progress">
@@ -107,11 +107,27 @@
           </v-card-text>
         </v-card>
       </v-flex>
+
+      <!-- En esta columna ubico la practica para el llamado a la API -->
+      <v-flex xs6>
+        <!-- En esta tarjeta esta ubicado el calendario -->
+        <v-card elevation = "15" class="mx-auto mt-5" max-width="400">
+          <v-date-picker color="error" v-model="date" width="400" locale="es-CO" :min="dateMin" :max="dateMax" @change="getDolar(date)"></v-date-picker>
+        </v-card>
+        <!-- En esta tarjeta estara el valor del dato -->
+        <v-card class="mx-auto" color="error" dark max-width="400">
+          <v-card-text class="display-1 text-center">Día seleccionado: {{ date }}, Valor del dolar en pesos chilenos ${{ valor }}</v-card-text>
+        </v-card>
+      </v-flex>
+
     </v-layout>
   </div>
 </template>
 
 <script>
+
+import axios from 'axios';
+import { mapMutations } from 'vuex';
 
 export default {
   name: 'Home',
@@ -148,6 +164,10 @@ export default {
           color: 'deep-purple',
         }
       ],
+      date: new Date().toISOString().substr(0, 10),
+      dateMin: '1984',
+      dateMax: new Date().toISOString().substr(0, 10),
+      valor: null,
     }),
 
     methods: {
@@ -155,6 +175,19 @@ export default {
         this.loading = true
         setTimeout(() => (this.loading = false), 5000)
       },
+      async getDolar (fecha) {
+        let ddmmyyyy = fecha.split(['-']).reverse().join('-');
+        try {
+          let datos = await axios.get(`https://mindicador.cl/api/dolar/${ddmmyyyy}`)
+          if (datos.data.serie.length > 0) {
+            this.valor = await datos.data.serie[0].valor
+          } else {
+            this.valor = 'Sin resultados'
+          }
+        } catch (error) {
+          console.log(error)
+        }
+      }
     },
 }
 </script>
