@@ -13,6 +13,9 @@
             <router-link to="/botones">
                 <v-btn text>Botones</v-btn> 
             </router-link>
+            <router-link to="/cards">
+                <v-btn text>Cards</v-btn>
+            </router-link>
             
             <v-spacer></v-spacer>
             <v-btn icon>
