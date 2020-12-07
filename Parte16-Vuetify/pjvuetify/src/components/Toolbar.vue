@@ -86,12 +86,12 @@
 export default {
     name: 'Toolbar',
     data: () => ({
-        drawer: true,
+        drawer: false,
         group: null
     }),
     watch: {
         group () {
-            this.drawer = false
+            this.drawer = true
         },
     },
 }

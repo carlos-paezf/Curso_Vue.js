@@ -112,6 +112,30 @@
                 </v-card>
             </v-flex>
         </v-layout>
+
+        <v-layout>
+            <v-flex>
+                <v-card elevation="24" dark>
+                    <v-card-title>Tarjeta para Modal</v-card-title>
+                    <v-card-text>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eius eaque mollitia explicabo quo ab quas neque? Explicabo minus nemo labore minima autem magnam laborum quas eius! Ipsam pariatur omnis esse!</v-card-text>
+                    <v-divider></v-divider>
+                    <v-card-actions>
+                        <v-btn class="mx-3" color="info" text @click="dialog = true">Activar Dialogo o Modal</v-btn>
+                    </v-card-actions>
+                </v-card>
+            </v-flex>
+        </v-layout>
+
+        <v-dialog v-model="dialog" width="500" persistent>
+            <v-card>
+                <v-card-title>Alerta de Prueba</v-card-title>
+                <v-card-text>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit quos molestias harum omnis voluptate eius, commodi impedit labore mollitia asperiores quo itaque! Modi quaerat doloremque soluta error id necessitatibus deleniti.</v-card-text>
+                <v-divider></v-divider>
+                <v-card-actions>
+                    <v-btn @click="dialog = !dialog">Cerrar</v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
     </v-container>
 </template>
 
@@ -120,6 +144,7 @@ export default {
     name: 'Cards',
     data: () => ({
         show: false,
+        dialog: false,
     })
 }
 </script>
