@@ -1,22 +1,12 @@
 <template>
     <div>
         <!-- Toolbar fijo en la pagina con iconos -->
-        <v-toolbar app dark>
+        <v-toolbar dark>
             <!-- Cada vez que presiono el icono, aparece el menu lateral -->
             <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
             <v-toolbar-title>Proyecto de Prueba</v-toolbar-title>
             <v-spacer></v-spacer>
-            <!-- Seccion para botones que sirvan de enlace -->
-            <router-link to="/">
-                <v-btn text>Home</v-btn>
-            </router-link>
-            <router-link to="/botones">
-                <v-btn text>Botones</v-btn> 
-            </router-link>
-            <router-link to="/cards">
-                <v-btn text>Cards</v-btn>
-            </router-link>
-            
+
             <v-spacer></v-spacer>
             <v-btn icon>
                 <v-icon>mdi-magnify</v-icon>
@@ -51,6 +41,25 @@
                         <v-btn class="my-3">Editar Perfil</v-btn>
                     </v-list-item-content>
                 </v-list-item>
+
+                <!-- Seccion divisoria entre las diferentes secciones -->
+                <v-divider class="mb-10 mt-5"></v-divider>
+
+                <!-- Seccion para botones que sirvan de enlace -->
+                <v-list-item-group>
+                    <v-list-item>
+                        <v-btn text :to="{name: 'Home'}" block>Home</v-btn>
+                    </v-list-item>
+                    <v-list-item>
+                        <v-btn text :to="{name: 'Botones'}" block>Botones</v-btn>
+                    </v-list-item>
+                    <v-list-item>
+                        <v-btn text :to="{name: 'Cards'}" block>Cards</v-btn>
+                    </v-list-item>
+                    <v-list-item>
+                        <v-btn text :to="{name: 'Tareas'}" block>Tareas-CRUD</v-btn>
+                    </v-list-item>
+                </v-list-item-group>
 
                 <!-- Seccion divisoria entre las diferentes secciones -->
                 <v-divider class="mb-10 mt-5"></v-divider>
