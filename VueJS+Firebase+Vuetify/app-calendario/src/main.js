@@ -8,6 +8,7 @@ import vuetify from './plugins/vuetify';
 
 //! npm i vue-textarea-autosize
 import VueTextareaAutosize from 'vue-textarea-autosize';
+Vue.use(VueTextareaAutosize);
 
 //! npm i firebase
 import firebase from 'firebase/app';
