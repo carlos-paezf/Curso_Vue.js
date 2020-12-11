@@ -17,6 +17,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::resource('/notas', 'NotasController')->middleware('auth');
+Route::resource('/notas', 'NotaController')->middleware('auth');
 
 Route::get('/home' , 'HomeController@index')->name('home');
